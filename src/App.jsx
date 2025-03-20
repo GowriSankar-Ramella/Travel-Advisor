@@ -3,7 +3,7 @@ import Header from "./Header";
 import HereMap from "./HereMap";
 import { fetchRestaurants, fetchAttractions, fetchHotels, fetchEvents } from "./api";
 import EventCard from "./EventCard"; // Import the EventCard component
-import "./app.css";
+import "./App.css";
 
 function App() {
   const [searchFunctions, setSearchFunctions] = useState({
