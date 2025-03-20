@@ -1,0 +1,332 @@
+/* Reset default styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background-color: #f5f5f5;
+}
+
+/* Header Styles */
+.header {
+  width: 100%;
+  background-color: #1e1e1e;
+  padding: 1rem 2rem;
+  color: white;
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  height: 80px; /* Ensure a fixed height */
+}
+
+/* Ensure main content starts below the header */
+.main-container {
+  display: flex;
+  width: 100vw;
+  height: calc(100vh - 80px); /* Subtract header height */
+  margin-top: 80px; /* Push content below header */
+  overflow: hidden;
+}
+
+/* Map container */
+.map-container {
+  flex: 1;
+  min-width: 65vw;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Restaurant List */
+.restaurant-list {
+  width: 35%;
+  height: 100%;
+  overflow-y: auto;
+  background-color: #ffffff;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Ensure restaurant list doesn't get overlapped */
+.restaurant-list {
+  position: relative; /* Keeps the suggestions above it */
+  z-index: 10; /* Ensures lower priority than search bar suggestions */
+}
+/* Restaurant Card */
+.restaurant-card {
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out;
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.restaurant-card:hover {
+  transform: scale(1.02);
+}
+
+.restaurant-card img {
+  width: 80px;
+  height: 80px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.restaurant-details {
+  flex-grow: 1;
+}
+
+.restaurant-name {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.restaurant-address {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.restaurant-rating {
+  font-size: 1rem;
+  color: #f4b400;
+}
+
+.restaurant-price {
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #4caf50;
+}
+
+.details-button {
+  padding: 5px 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.details-button:hover {
+  background-color: #0056b3;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .search-input {
+    width: 250px;
+  }
+}
+
+@media (max-width: 768px) {
+  .main-container {
+    flex-direction: column;
+  }
+
+  .map-container,
+  .restaurant-list {
+    width: 100%;
+    height: 50%;
+  }
+}
+
+@media (max-width: 480px) {
+  .search-input {
+    width: 200px;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+}
+/* Restore search input size */
+.search-input {
+  width: 300px;  /* Reset to previous size */
+  padding: 12px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  transition: 0.3s ease;
+}
+
+.search-input:focus {
+  border-color: #4caf50;
+}
+
+/* Ensure search button matches input height */
+.search-button {
+  padding: 12px 20px; /* Adjust padding */
+  font-size: 1rem;
+  height: 46px; /* Ensure it matches the input height */
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.search-button:hover {
+  background-color: #45a049;
+}
+.search-container {
+  position: relative; /* Needed for absolute positioning of suggestions */
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.suggestions-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  max-height: 200px;
+  overflow-y: auto;
+  list-style-type: none;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 5px;
+  z-index: 1000;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.suggestions-list li {
+  padding: 10px; /* Added space between suggestions */
+  color: blue; /* Set text color to blue */
+  cursor: pointer; /* Make it clear that items are clickable */
+  transition: background-color 0.3s ease-in-out; /* Smooth hover effect */
+}
+
+/* Hover effect */
+.suggestions-list li:hover {
+  background-color: #f0f0f0; /* Light gray background on hover */
+}
+
+.info-bubble {
+  display: flex;
+  align-items: center;
+  background: white;
+  padding: 8px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  width: 200px;
+}
+
+.info-bubble img {
+  width: 40px;
+  height: 40px;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.info-details h4 {
+  margin: 0;
+  font-size: 14px;
+  color: #333;
+}
+
+.info-details p {
+  margin: 2px 0 0;
+  font-size: 12px;
+  color: #666;
+}
+
+/* app.css */
+.filters-container {
+  display: flex;
+  gap: 10px; /* Adds spacing between dropdowns */
+  align-items: center; /* Aligns dropdowns in a single row */
+  margin-bottom: 10px;
+}
+
+.category-selector, .rating-selector {
+  display: flex;
+  align-items: center;
+  gap: 5px; /* Adds space between label & select */
+}
+
+select {
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* app.css */
+.event-card {
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out;
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.event-card:hover {
+  transform: scale(1.02);
+}
+
+.event-card img {
+  width: 80px;
+  height: 80px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.event-details {
+  flex-grow: 1;
+}
+
+.event-name {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.event-info {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.event-date,
+.event-location {
+  font-size: 1rem;
+  color: #007bff;
+  font-weight: bold;
+}
+
+.event-link {
+  padding: 5px 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.event-link:hover {
+  background-color: #0056b3;
+}
+
+
